@@ -195,7 +195,11 @@ h1, h2, h3, h4, h5, h6 {
 .columns-four {
   grid-template-columns: repeat(4, 1fr);
 }
-.col {border-radius: 15px;}
+
+.col {
+  border-radius: 15px;
+}
+
 .box__content {
   position: absolute;
   bottom: 0;
@@ -911,16 +915,58 @@ body > section > div > div > div:nth-child(1) {
 .product_meta {
   display: grid;
   gap: 20px;
-  a {color: $color-primary-dark; text-decoration: none;}
+
+  a {
+    color: $color-primary-dark;
+    text-decoration: none;
+  }
 }
 
 //woo fixes
-.quantity {height: 20px !important;}
-.prod__header-cols .woocommerce-variation-add-to-cart input {margin-bottom: 0 !important;}
-.variations tr {display: grid; gap: 10px;}
-
-section {box-shadow: 0 0 30px rgba(0, 0, 0, 0.60) inset;}
-@media screen {
-html {margin-top: 0 !important;}
+.quantity {
+  height: 20px !important;
 }
-html.k-webkit.k-webkit78 { margin-top: 0 !important; }
+
+.prod__header-cols .woocommerce-variation-add-to-cart input {
+  margin-bottom: 0 !important;
+}
+
+.variations tr {
+  display: grid;
+  gap: 10px;
+}
+
+section {
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.60) inset;
+}
+
+@media screen {
+  html {
+    margin-top: 0 !important;
+  }
+}
+
+html.k-webkit.k-webkit78 {
+  margin-top: 0 !important;
+}
+
+#search_results {
+  .container {
+    padding: 0 !important;
+  }
+
+  position: fixed;
+  top: 102px;
+  left: 0;
+  width: 100%;
+  margin: auto;
+  background: white;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.60) inset;
+  z-index: 100;
+  padding: 0 !important;
+
+  a {
+    display: inline-block;
+    margin: 20px;
+  }
+}

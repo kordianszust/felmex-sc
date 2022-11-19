@@ -195,7 +195,55 @@ require get_template_directory() . '/inc/blocks.php';
 
 
 // remove rating stars
-remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
-remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_images',20 );
-remove_action( 'woocommerce_after_single_product_summary','woocommerce_output_related_products',20);
-remove_action('woocommerce_after_single_product_summary','woocommerce_output_product_data_tabs',10);
+remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10);
+remove_action('woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 20);
+remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20);
+remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10);
+
+// Search box and ajax search
+add_action('wp_footer', 'ajax_fetch');
+function ajax_fetch()
+{ ?>
+    <script type="text/javascript">
+        function fetch() {
+            if (jQuery('#keyword').val().length >= 3) {
+                jQuery.ajax({
+                    url: '<?php echo admin_url('admin-ajax.php'); ?>',
+                    type: 'post',
+                    data: {
+                        action: 'data_fetch', keyword: jQuery('#keyword').val()
+                    },
+                    success: function (data) {
+                        jQuery('#search_results .data').html(data);
+                    }
+                });
+            } else {   jQuery('#search_results .data').html('');}
+        }
+    </script>
+<?php }
+
+add_action('wp_ajax_data_fetch', 'data_fetch');
+add_action('wp_ajax_nopriv_data_fetch', 'data_fetch');
+function data_fetch()
+{
+    $args = array(
+        'post_type' => array('product'),
+        's' => esc_attr($_POST['keyword']),
+        'posts_per_page'         => '1',
+    );
+
+    $products_ajax_query = new WP_Query($args);
+    if ($products_ajax_query->have_posts()) {
+        while ($products_ajax_query->have_posts()) {
+            $products_ajax_query->the_post();
+            echo '<a href="' . get_permalink($id) . '">';
+            echo get_the_title();
+            echo '</a><br>';
+        }
+    } else {
+        echo 'Brak produktów...';
+    }
+
+    wp_reset_postdata();
+    die();
+}

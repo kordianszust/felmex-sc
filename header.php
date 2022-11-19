@@ -27,7 +27,7 @@
         </div>
         <div class="col">
             <div class="header__test">
-                <input placeholder="Search">
+                <input type="text" placeholder="Wpisz nazwę produktu" name="keyword" id="keyword" onkeyup="fetch()" />
                 <button>Zaloguj się</button>
                 <button>Zarejestruj</button>
             </div>
@@ -45,3 +45,10 @@
     </div>
     </div>
 </header>
+<div class="container-fluid" id="search_results">
+    <div class="container">
+        <div class="data">
+
+        </div>
+    </div>
+</div>
