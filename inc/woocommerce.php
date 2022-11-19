@@ -118,7 +118,7 @@ if ( ! function_exists( 'felmex_sc_woocommerce_wrapper_before' ) ) {
 	 */
 	function felmex_sc_woocommerce_wrapper_before() {
 		?>
-			<main id="primary" class="site-main">
+			<section class="container">
 		<?php
 	}
 }
@@ -134,7 +134,7 @@ if ( ! function_exists( 'felmex_sc_woocommerce_wrapper_after' ) ) {
 	 */
 	function felmex_sc_woocommerce_wrapper_after() {
 		?>
-			</main><!-- #main -->
+			</section><!-- #main -->
 		<?php
 	}
 }
