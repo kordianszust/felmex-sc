@@ -40,7 +40,7 @@ get_header('shop'); ?>
             <div class="prod__header-cols">
                 <div class="col">
                     <?php
-                    $image = wp_get_attachment_image_src(get_post_thumbnail_id($product_id), 'single-post-thumbnail');
+                    $image = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_id()), 'single-post-thumbnail');
                     ?><img class="prod__image" src="<?php echo $image[0]; ?>">
                 </div>
                 <div class="col prod__cart">
